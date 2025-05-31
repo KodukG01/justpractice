@@ -1,0 +1,7 @@
+#!/bin/bash
+
+movies=("court" "HIT3" "OG" "Saalar")
+echo "1st movie: ${movies[0]}"
+echo "2nd movie: ${movies[1]}"
+echo "3rd movie: ${movies[2]}"
+echo "4th movie: ${movie[3]}"
