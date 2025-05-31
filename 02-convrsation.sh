@@ -1,7 +1,8 @@
 #!/bin/bash
 
-p1=Trump
-p2=Musk
+person1=$1
+person2=$2
 
-echo "$p2:Hi $p1, How are you"
-echo "$p1:Good $P2, How are you"
+echo "$person1:Hi $Person2, How are you"
+echo "$person2:I am fine, How are you"
+echo :$person1:Great, Operation Sindhoor was successful"
