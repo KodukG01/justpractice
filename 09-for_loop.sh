@@ -30,15 +30,14 @@ VALIDATE(){
     fi
 }
 
-# for package in ${packages[@]}
-for package in $@
+for package in ${packages[@]}
 do
     dnf list installed $package $>>$LOG_FILE
     if [ $? -ne 0 ]
     then
         echo "Installing packages" | tee -a $LOG_FILE
         dnf install $package -y $>>$LOG_FILE
-        VALIDATE $? "Package"
+        VALIDATE $? "$package"
     else
         echo "Installed nothing to do" | tee -a $LOG_FILE
     fi  
