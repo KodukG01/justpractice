@@ -22,6 +22,7 @@ then
     else
         echo "Error: Failed to install mysql"
         exit 1
+    fi
 else
     echo "Mysql installed nothing to do"
 
