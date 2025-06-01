@@ -7,7 +7,7 @@ N="\e[0m"
 LOG_FOLDER="/var/log/roboshop_log"
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 LOG_FILE="$LOG_FOLDER/$SCRIPT_NAME.log"
-packages=("mysql" "python" "nginx")
+packages=("mysql" "python3" "nginx")
 
 mkdir -p $LOG_FOLDER
 echo "Script started executing at $(date)" | tee -a $LOG_FILE
@@ -30,13 +30,13 @@ VALIDATE(){
     fi
 }
 
-for packages in ${packages[@]}
+for package in ${packages[@]}
 do
-    dnf list installed $packages $>>$LOG_FILE
+    dnf list installed $package $>>$LOG_FILE
     if [ $? -ne 0 ]
     then
         echo "Installing packages" | tee -a $LOG_FILE
-        dnf install $packages -y $>>$LOG_FILE
+        dnf install $package -y $>>$LOG_FILE
     else
         echo "Installed nothing to do" | tee -a $LOG_FILE
     fi  
