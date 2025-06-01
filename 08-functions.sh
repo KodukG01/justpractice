@@ -8,7 +8,7 @@ then
 else
     echo "Running with root access"
 
-validate(){
+VALIDATE(){
     if [ $1 -eq 0 ]
     then
         echo "Installing $2.....success"
@@ -24,8 +24,29 @@ if [ $? -ne 0 ]
 then
     echo "Installing MYSQL"
     dnf install mysql -y
-    validate $? "mysql"
+    VALIDATE $? "mysql"
 else
     echo "MYSQL installed nothing to do"
 fi
 
+dnf list installed python3
+
+if [ $? -ne 0 ]
+then
+    echo "Installing python3"
+    dnf install python3 -y
+    VALIDATE $? "Python3"
+else
+    echo "Python3 already installed"
+fi
+
+dnf list installed nginx
+
+if [ $? -ne 0 ]
+then
+    echo "Installing nginx"
+    dnf install nginx -y
+    VALIDATE $? "nginx"
+else
+    echo "nginx already installed"
+fi
