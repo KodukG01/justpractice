@@ -52,3 +52,6 @@ then
 else
     echo "nginx already installed"
 fi
+
+cp $SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service
+VALIDATE $? "Copying catalogue.service"
