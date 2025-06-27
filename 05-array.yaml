@@ -11,6 +11,6 @@
 
 cloud=("AWS","AZURE","GCP")
 
-echo "Amazon cloud is ${cloud[0]}"
-echo "Microsoft cloud is ${cloud[1]}"
-echo "Google cloud is ${cloud[2]}"
+echo "Amazon cloud: ${cloud[0]}"
+echo "Microsoft cloud: ${cloud[1]}"
+echo "Google cloud: ${cloud[2]}"
