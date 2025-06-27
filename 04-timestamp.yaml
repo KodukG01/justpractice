@@ -1,10 +1,12 @@
 #!/bin/bash
 
-number1=100
-number2=200
+n1=100
+n2=200
 
 timestamp=$(date)
-echo "Script started executing at $timestamp"
-sum=$(($number1+$number2))
 
-echo "Sum of $number1 and $number2 is $sum"
+echo "Script started executing at $(date)"
+
+ns=$(($n1+n2))
+
+echo 'Sum of two numbers is $ns'
