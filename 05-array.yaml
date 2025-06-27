@@ -9,8 +9,8 @@
 
 #!/bin/bash
 
-cloud=("AWS","AZURE","GCP")
+cloud=("AWS" "AZURE" "GCP")
 
-#echo "Amazon cloud: ${cloud[0]}"
+echo "Amazon cloud: ${cloud[0]}"
 echo "Microsoft cloud: ${cloud[1]}"
 echo "Google cloud: ${cloud[2]}"
