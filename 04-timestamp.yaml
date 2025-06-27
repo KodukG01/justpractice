@@ -7,6 +7,6 @@ timestamp=$(date)
 
 echo "Script started executing at $(date)"
 
-ns=$(($n1+n2))
+ns=$($n1+$n2)
 
-echo 'Sum of two numbers is $ns'
+echo 'Sum of two numbers is'
