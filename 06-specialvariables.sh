@@ -6,4 +6,6 @@ echo "Current script name: $0"
 echo "Current working directory: $PWD"
 echo "User running the script: $USER"
 echo "PID of current script: $$"
-echo "PID last command: $?"
+sleep 10
+echo "PID of last command: $!
+echo "Exit status of last command: $?"
