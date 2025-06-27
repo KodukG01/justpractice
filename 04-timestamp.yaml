@@ -9,4 +9,4 @@ echo "Script started executing at $(date)"
 
 ns=$($n1+$n2)
 
-echo 'Sum of two numbers is'
+echo "Sum of two numbers is $ns"
