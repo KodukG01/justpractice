@@ -1,7 +1,16 @@
+# #!/bin/bash
+
+# movies=("court" "HIT3" "OG" "Saalar")
+# echo "1st movie: ${movies[0]}"
+# echo "2nd movie: ${movies[1]}"
+# echo "3rd movie: ${movies[2]}"
+# echo "4th movie: ${movies[3]}"
+
+
 #!/bin/bash
 
-movies=("court" "HIT3" "OG" "Saalar")
-echo "1st movie: ${movies[0]}"
-echo "2nd movie: ${movies[1]}"
-echo "3rd movie: ${movies[2]}"
-echo "4th movie: ${movies[3]}"
+cloud=("AWS","AZURE","GCP")
+
+echo "Amazon cloud is ${cloud[0]}"
+echo "Microsoft cloud is ${cloud[1]}"
+echo "Google cloud is ${cloud[2]}"
