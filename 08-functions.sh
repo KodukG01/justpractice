@@ -42,7 +42,7 @@ else
     echo "python3 installed nothing to do"
 fi
 
-dnf list installed mysql -y
+dnf list installed nginx -y
 
 if [ $? -ne 0 ]
 then
