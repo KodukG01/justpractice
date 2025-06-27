@@ -47,6 +47,7 @@ if [ $? -ne 0 ]
 then
     echo "installing nginx"
     dnf install nginx -y
+    systemctl start nginx
     VALIDATE $? "nginx"
 else
     echo "nginx installed nothing to do"
