@@ -1,6 +1,6 @@
 #!/bin/bash
 
 echo "Enter password"
-read -ps password
+read -s password
 
 echo "login successful"
