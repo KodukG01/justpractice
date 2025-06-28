@@ -66,16 +66,16 @@ VALIDATE $? "Install dependencies"
 cp $SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service
 VALIDATE $? "Cpying catalogue services"
 
-systemctl daemon-reload
-systemctl enable catalogue 
-systemctl start catalogue
-VALIDATE $? "Starting Catalogue"
+systemctl daemon-reload &>>$LOG_FILE
+systemctl enable catalogue  &>>$LOG_FILE
+systemctl start catalogue &>>$LOG_FILE
+VALIDATE $? "Starting Catalogue" 
 
 cp $SCRIPT_DIR/mongo.repo /etc/yum.repos.d/mongo.repo
 VALIDATE $? "Copying mongodb files and folders"
 
-dnf install mongodb-mongosh -y
+dnf install mongodb-mongosh -y &>>$LOG_FILE
 VALIDATE $? "Installing mongodb client"
 
-mongosh --host mongodb.devsecops.fun </app/db/master-data.js
+mongosh --host mongodb.devsecops.fun </app/db/master-data.js &>>$LOG_FILE
 VALIDATE $? "Connecting to mongodb"
