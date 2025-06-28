@@ -14,18 +14,18 @@ echo "Script started executing at $(date)"
 
 if [ $USERID -ne 0 ]
 then
-    echo "$R ERROR:: Please run the script with root access $N"
+    echo "$R ERROR:: Please run the script with root access $N" | tee -a $LOG_FILE
     exit1
 else
-    echo "$G Script started executing with root access $N"
+    echo "$G Script started executing with root access $N" | tee -a $LOG_FILE
 fi
 
 VALIDATE(){
     if [ $1 -eq 0 ]
     then
-        echo "$G $2 is .......Success $N"
+        echo "$2 is .......$G Success $N" | tee -a $LOG_FILE
     else
-        echo "$R $2 is ........Failure $N"
+        echo "$2 is ........$R Failure $N" | tee -a $LOG_FILE
         exit 1
     fi
 
@@ -34,13 +34,13 @@ VALIDATE(){
 cp mongo.repo /etc/yum.repos.d/mongo.repo
 VALIDATE $? "Copying mongo.repo"
 
-dnf install mongodb-org -y 
+dnf install mongodb-org -y &>> $LOG_FILE
 VALIDATE $? "Installing mongodb"
 
-systemctl enable mongod 
+systemctl enable mongod &>> $LOG_FILE
 VALIDATE $? "Enabling mongodb"
 
-systemctl start mongod 
+systemctl start mongod &>> $LOG_FILE
 VALIDATE $? "Start mongodb"
 
 sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
