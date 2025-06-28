@@ -26,7 +26,7 @@ fi
 }
 
 dnf list installed mysql -y
-if[ $? -ne 0 ]
+if [ $? -ne 0 ]
 then
 echo "Installing MYSQL"
 dnf install mysql -y
@@ -36,7 +36,7 @@ echo "MYSQL Already Installed Nothing TO DO"
 fi
 
 dnf list installed python3 -y
-if[ $? -ne 0 ]
+if [ $? -ne 0 ]
 then
 echo "Installing Python3"
 dnf install python3 -y
@@ -46,7 +46,7 @@ echo "Python3 Already Installed Nothing TO DO"
 fi
 
 dnf list installed nginx -y
-if[ $? -ne 0 ]
+if [ $? -ne 0 ]
 then
 echo "Installing Nginx"
 dnf install nginx -y
