@@ -14,18 +14,18 @@ echo "Script started executing at $(date)"
 
 if [ $USERID -ne 0 ]
 then
-    echo "$R ERROR:: Please run the script with root access $N" | tee -a $LOG_FILE
+    echo -e "$R ERROR:: Please run the script with root access $N" | tee -a $LOG_FILE
     exit1
 else
-    echo "$G Script started executing with root access $N" | tee -a $LOG_FILE
+    echo -e "$G Script started executing with root access $N" | tee -a $LOG_FILE
 fi
 
 VALIDATE(){
     if [ $1 -eq 0 ]
     then
-        echo "$2 is .......$G Success $N" | tee -a $LOG_FILE
+        echo -e "$2 is .......$G Success $N" | tee -a $LOG_FILE
     else
-        echo "$2 is ........$R Failure $N" | tee -a $LOG_FILE
+        echo -e "$2 is ........$R Failure $N" | tee -a $LOG_FILE
         exit 1
     fi
 
