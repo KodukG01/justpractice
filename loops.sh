@@ -10,7 +10,7 @@ LOGS_FOLDER="/var/log/shellscript-log"
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
 SCRIPT_DIR=$PWD
-Packages=("mysql" "python3" "nginx" "httpd")
+# Packages=("mysql" "python3" "nginx" "httpd")
 
 mkdir -p $LOGS_FOLDER
 
@@ -35,7 +35,7 @@ else
 fi
 }
 
-for package in ${Packages[@]}
+for package in $@
 do
     dnf list installed $package &>> $LOG_FILE
     if [ $? -ne 0 ]
