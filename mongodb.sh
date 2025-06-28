@@ -44,7 +44,7 @@ systemctl start mongod
 VALIDATE $? "Start mongodb"
 
 sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
-VALIDATE $? "Enditing mogodb config files"
+VALIDATE $? "Enditing mogodb config files for remote connections"
 
 systemctl restart mongod
 VALIDATE $? "Restart mongodb file"
