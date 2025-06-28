@@ -42,7 +42,7 @@ do
     then
         echo "Installing packages" | tee -a $LOG_FILE
         dnf install $Packages -y &>> $LOG_FILE
-        validate $? "Packages"
+        VALIDATE $? "Packages"
     else
         echo "Packages installed nothing to do" | tee -a $LOG_FILE
     fi
