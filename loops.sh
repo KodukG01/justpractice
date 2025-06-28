@@ -35,7 +35,7 @@ else
 fi
 }
 
-for package in ${Packages[$@]}
+for package in ${Packages[@]}
 do
     dnf list installed $package &>> $LOG_FILE
     if [ $? -ne 0 ]
