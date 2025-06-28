@@ -37,11 +37,11 @@ fi
 
 for i in ${Packages[$@]}
 do
-    dnf list installed $Packages &>> $LOG_FILE
+    dnf list installed $i &>> $LOG_FILE
     if [ $? -ne 0 ]
     then
         echo "Installing packages" | tee -a $LOG_FILE
-        dnf install $Packages -y &>> $LOG_FILE
+        dnf install $i -y &>> $LOG_FILE
         VALIDATE $? "Packages"
     else
         echo "Packages installed nothing to do" | tee -a $LOG_FILE
