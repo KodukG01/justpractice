@@ -4,46 +4,47 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
-LOG_FOLDER="/var/log/roboshop_log"
+LOG_FOLDER="/var/log/roboshop-logs"
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 LOG_FILE="$LOG_FOLDER/$SCRIPT_NAME.log"
+SCRIPT_DIR=$PWD
 
 mkdir -p $LOG_FOLDER
-echo "Script started executing at $(date)" | tee -a $LOG_FILE
+echo "Script started executing at $(date)"
 
 if [ $USERID -ne 0 ]
 then
-    echo -e "$R ERROE:: Please run the script with root access $N" | tee -a $LOG_FILE
-    exit 1
-else    
-    echo -e "Running script with root access" | tee -a $LOG_FILE
+    echo "$R ERROR:: Please run the script with root access $N"
+    exit1
+else
+    echo "$G Script started executing with root access $N"
 fi
 
 VALIDATE(){
     if [ $1 -eq 0 ]
     then
-        echo "$G Installing $2 is.....success $N" | tee -a $LOG_FILE
+        echo "$G $2 is .......Success $N"
     else
-        echo "$R Installing $2 is......failure $N" | tee -a $LOG_FILE
+        echo "$R $2 is ........Failure $N"
         exit 1
     fi
+
 }
 
-cp mongo.repo /etc/yum.repos.d/mongo.repo 
-VALIDATE $? "Copying mongo.repo" 
+cp mongo.repo /etc/yum.repos.d/mongo.repo
+VALIDATE $? "Copying mongo.repo"
 
-dnf install mongodb-org -y &>>$LOG_FILE
+dnf install mongodb-org -y 
 VALIDATE $? "Installing mongodb"
 
-systemctl enable mongod &>>$LOG_FILE
-VALIDATE $? "Enable mongodb"
+systemctl enable mongod 
+VALIDATE $? "Enabling mongodb"
 
-systemctl start mongod &>>$LOG_FILE
+systemctl start mongod 
 VALIDATE $? "Start mongodb"
 
-sed -i 's/127.0.0.1/0.0.0.0/g'  /etc/mongod.conf
-VALIDATE $? "Replace ip"
+sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
+VALIDATE $? "Enditing mogodb config files"
 
-systemctl restart mongod &>>$LOG_FILE
-VALIDATE $? "Restart mongodb"
-
+systemctl restart mongod
+VALIDATE $? "Restart mongodb file"
