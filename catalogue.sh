@@ -77,5 +77,11 @@ VALIDATE $? "Copying mongodb files and folders"
 dnf install mongodb-mongosh -y &>>$LOG_FILE
 VALIDATE $? "Installing mongodb client"
 
-mongosh --host mongodb.devsecops.fun </app/db/master-data.js &>>$LOG_FILE
-VALIDATE $? "Connecting to mongodb"
+STATUS=$(mongosh --host mongodb.devsecops.fun --eval 'db.getMongo().getDBNames().indexOf("catalogue")')
+if [ $STATUS -lt 0 ]
+then
+    mongosh --host mongodb.devsecops.fun </app/db/master-data.js &>>$LOG_FILE
+    VALIDATE $? "Connecting to mongodb"
+else
+    echo -e "Data is already loaded .........$Y skipping $N"
+fi
