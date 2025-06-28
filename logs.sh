@@ -34,10 +34,10 @@ exit 1
 fi
 }
 
-dnf list installed mysql -y | tee -a $LOG_FILE
+dnf list installed mysql -y &>> $LOG_FILE
 if [ $? -ne 0 ]
 then
-echo "Installing MYSQL" &>> $LOG_FILE
+echo "Installing MYSQL" | tee -a $LOG_FILE
 dnf install mysql -y &>> $LOG_FILE
 VALIDATE $? "MYSQL installation"
 else
@@ -63,5 +63,5 @@ fi
 # VALIDATE $? "Nginx installation"
 # else
 # echo "Nginx Already Installed Nothing TO DO" | tee -a $LOG_FILE
-fi
+# fi
 
