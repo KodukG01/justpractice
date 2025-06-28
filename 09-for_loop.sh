@@ -1,47 +1,58 @@
 #!/bin/bash
 
 USERID=$(id -u)
+
 R="\e[31m"
 G="\e[32m"
-Y="\e[33m"
+y="\e[33m"
 N="\e[0m"
-LOGS_FOLDER="/var/log/shellscript-logs"
-SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
-LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
-PACKAGES=("mysql" "python" "nginx" "httpd")
-
-mkdir -p $LOGS_FOLDER
-echo "Script started executing at: $(date)" | tee -a $LOG_FILE
 
 if [ $USERID -ne 0 ]
 then
-    echo -e "$R ERROR:: Please run this script with root access $N" | tee -a $LOG_FILE
-    exit 1 #give other than 0 upto 127
+echo -e "$R ERROR:: Please run the script with root access $N"
+exit 1
 else
-    echo "You are running with root access" | tee -a $LOG_FILE
+echo -e "$G Script started running with root access"
 fi
 
-# validate functions takes input as exit status, what command they tried to install
-VALIDATE(){
-    if [ $1 -eq 0 ]
-    then
-        echo -e "Installing $2 is ... $G SUCCESS $N" | tee -a $LOG_FILE
-    else
-        echo -e "Installing $2 is ... $R FAILURE $N" | tee -a $LOG_FILE
-        exit 1
-    fi
+VALIDATE() {
+if [ $1 -eq 0 ]
+then
+echo "$G Installing $2.........Success $N"
+else
+echo "$R Installing $2..........Failed $N"
+exit 1
+fi
 }
 
-#for package in ${PACKAGES[@]}
-for package in $@
-do
-    dnf list installed $package &>>$LOG_FILE
-    if [ $? -ne 0 ]
-    then
-        echo "$package is not installed... going to install it" | tee -a $LOG_FILE
-        dnf install $package -y &>>$LOG_FILE
-        VALIDATE $? "$package"
-    else
-        echo -e "Nothing to do $package... $Y already installed $N" | tee -a $LOG_FILE
-    fi
-done
+dnf list installed mysql -y
+if[ $? -ne 0 ]
+then
+echo "Installing MYSQL"
+dnf install mysql -y
+VALIDATE $? "MYSQL installation"
+else
+echo "MYSQL Already Installed Nothing TO DO"
+fi
+
+dnf list installed python3 -y
+if[ $? -ne 0 ]
+then
+echo "Installing Python3"
+dnf install python3 -y
+VALIDATE $? "Python3 installation"
+else
+echo "Python3 Already Installed Nothing TO DO"
+fi
+
+dnf list installed nginx -y
+if[ $? -ne 0 ]
+then
+echo "Installing Nginx"
+dnf install nginx -y
+systemctl start nginx
+VALIDATE $? "Nginx installation"
+else
+echo "Nginx Already Installed Nothing TO DO"
+fi
+

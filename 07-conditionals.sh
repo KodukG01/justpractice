@@ -23,3 +23,4 @@ dnf install mysql -y
 else
 echo "Mysql installed successfully, nothing to do"
 fi
+
