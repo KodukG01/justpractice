@@ -44,24 +44,24 @@ else
 echo "MYSQL Already Installed Nothing TO DO" &>> $LOG_FILE
 fi
 
-# dnf list installed python3 -y &>> $LOG_FILE
-# if [ $? -ne 0 ]
-# then
-# echo "Installing Python3" | tee -a $LOG_FILE
-# dnf install python3 -y &>> $LOG_FILE
-# VALIDATE $? "Python3 installation" 
-# else
-# echo "Python3 Already Installed Nothing TO DO" &>> $LOG_FILE
-# fi
+dnf list installed python3 -y &>> $LOG_FILE
+if [ $? -ne 0 ]
+then
+echo "Installing Python3" | tee -a $LOG_FILE
+dnf install python3 -y &>> $LOG_FILE
+VALIDATE $? "Python3 installation" 
+else
+echo "Python3 Already Installed Nothing TO DO" &>> $LOG_FILE
+fi
 
-# dnf list installed nginx -y &>> $LOG_FILE
-# if [ $? -ne 0 ]
-# then
-# echo "Installing Nginx" | tee -a $LOG_FILE
-# dnf install nginx -y &>> $LOG_FILE
-# systemctl start nginx &>> $LOG_FILE
-# VALIDATE $? "Nginx installation"
-# else
-# echo "Nginx Already Installed Nothing TO DO" | tee -a $LOG_FILE
-# fi
+dnf list installed nginx -y &>> $LOG_FILE
+if [ $? -ne 0 ]
+then
+echo "Installing Nginx" | tee -a $LOG_FILE
+dnf install nginx -y &>> $LOG_FILE
+systemctl start nginx &>> $LOG_FILE
+VALIDATE $? "Nginx installation"
+else
+echo "Nginx Already Installed Nothing TO DO" | tee -a $LOG_FILE
+fi
 
