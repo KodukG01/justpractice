@@ -50,7 +50,7 @@ else
      echo -e "System user roboshop already created ... $Y SKIPPING"
 fi
 
-mkdir /app
+mkdir -p /app
 VALIDATE $? "Creating /app directory"
 
 curl -L -o /tmp/cart.zip https://roboshop-artifacts.s3.amazonaws.com/cart-v3.zip
